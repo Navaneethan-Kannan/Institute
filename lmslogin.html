@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LMS Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url("./img/library.jpg");
+      background-repeat: no-repeat;
+      background-size: cover;
+      /*linear-gradient(to right, #4cc4e6, #5a7491);*/
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 350px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #333;
+    }
+
+    .login-container select,
+    .login-container input {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .login-container button {
+      width: 100%;
+      padding: 12px;
+      border: none;
+      background-color: #2e6bb6;
+      color: white;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-container button:hover {
+      background-color: #24a154;
+    }
+
+    .error-message {
+      color: red;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-container">
+    <h2>LMS Login</h2>
+    <div class="error-message" id="error-message"></div>
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+    <input type="text" id="username" placeholder="Username" />
+    <input type="password" id="password" placeholder="Password" />
+    <button onclick="login()">Login</button>
+  </div>
+  <script>
+    // Simulated login data (you can store more users if needed)
+    const users = {
+      admin: { username: 'admin', password: 'admin123' },
+      admin2: { username: 'navani', password: '123' },
+      user1: { username: 'user', password: 'user123' },
+      user2: { username: 'navani', password: '123' }
+    };
+  
+    function login() {
+      const role = document.getElementById('role').value;
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const errorMessage = document.getElementById('error-message');
+  
+      const key = `${role}_${username}`;
+  
+      // Check if user exists and password matches
+      const matchedUser = Object.values(users).find(
+        (u) => u.username === username && u.password === password
+      );
+  
+      if (!matchedUser) {
+        errorMessage.textContent = "Invalid username or password.";
+        return;
+      }
+  
+      // If role is user, check for expiry
+      if (role === 'user') {
+        const now = new Date().getTime();
+        const storedTime = localStorage.getItem(`${key}_loginTime`);
+  
+        if (storedTime && now - parseInt(storedTime) > 30 * 24 * 60 * 60 * 1000) {
+          errorMessage.textContent = "Login expired. Please contact support.";
+          return;
+        }
+  
+        // If not expired, or first login, store time
+        if (!storedTime) {
+          localStorage.setItem(`${key}_loginTime`, now.toString());
+        }
+      }
+  
+      // Login success
+      errorMessage.textContent = "";
+      alert(`Welcome ${role}!`);
+      // Redirect or next logic
+      location.href="./library.html"
+    }
+  </script>
+  
+</body>
+</html>

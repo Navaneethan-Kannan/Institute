@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Startup - Startup Website Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Free HTML Templates" name="keywords">
+    <meta content="Free HTML Templates" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+
+  <style>
+    body { font-family: Arial, sans-serif;  }
+    .seats { display: grid; grid-template-columns: repeat(5, 60px); gap: 10px; margin-bottom: 20px; }
+    .seat {
+      width: 60px; height: 60px;
+      background-color: #ccc; border: 2px solid #999;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; border-radius: 5px;
+    }
+    .seat.selected { background-color: rgb(97, 184, 148); color:white }
+    .seat.booked { background-color: rgba(247, 13, 13, 0.658);color:white ; cursor: not-allowed; }
+    form { max-width: 300px; margin-bottom: 30px; }
+    input, button { width: 100%; margin-bottom: 10px; padding: 8px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #999; padding: 8px; text-align: center; }
+    th { background-color: #eee; }
+
+    .booking{
+            display: flex;
+            justify-content: space-evenly;
+    }
+  </style>
+</head>
+
+<body>
+
+
+    
+
+<!-- Navbar start -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top px-5 py-3 py-lg-0" id="mainnav">
+  <a href="index.html" class="navbar-brand p-0">
+      <h1 class="m-0 ms-5"><i class="fa fa-user-tie me-2"></i><span class="ms-3">LDT</span></h1>
+  </a>
+  <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+      <span class="fa fa-bars"></span>
+  </button> -->
+  <div class="collapse navbar-collapse" > <!-- id="navbarCollapse"-->
+      <div class="navbar-nav ms-auto py-0">
+          <a href="index.html" class="nav-item nav-link ">Home</a>
+          <div class="nav-item dropdown">
+              <a href="./about.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">About</a>
+              <div class="dropdown-menu m-0">
+                  <a href="./about.html" class="dropdown-item">Experience</a>
+                  <a href="./about.html#team" class="dropdown-item">Our Teams</a>
+              </div>
+          </div>
+          <div class="nav-item dropdown">
+              <a href="./Training.html" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Training Module</a>
+              <div class="dropdown-menu m-0">
+                  <a href="./Training.html" class="dropdown-item">Entity</a>
+                  <a href="./Training.html#welding" class="dropdown-item">Welding</a>
+                  <a href="./Training.html#Services" class="dropdown-item">Services</a>
+              </div>
+          </div>
+          
+          <a href="./booking.html" class="nav-link active">Booking</a>
+
+          <a href="./lmslogin.html" class="nav-link" >LMS</a>
+
+          <a href="contact.html" class="nav-item nav-link">Contact</a>
+      </div>
+      <!-- <button type="button" class="btn text-primary ms-3" data-bs-toggle="modal" data-bs-target="#searchModal"><i class="fa fa-search"></i></button> -->
+      <a href="./booking.html" class="btn btn-primary py-2 px-4 mt-4 ms-4">Book Now</a>
+  </div>
+</nav>
+
+  <!-- Navbar End -->
+
+
+<style>
+    
+    #name, #email, #phone, #seatNumber{
+        border: 1px solid rgb(70, 206, 243);
+        width: 350px;
+        background-color: rgb(219, 241, 247);
+        color: black;
+        padding: 10px;
+        
+
+    }
+
+#name:focus,
+#email:focus,
+#phone:focus,
+#seatNumber:focus {
+  background-color: rgb(154, 232, 253);
+  outline: 8px solid rgb(151, 229, 250);
+  border-radius: 10px;
+}
+
+.seatbtn{
+    background-color: rgb(28, 166, 230);
+    border-radius: 5px;
+}
+.seatbtn:hover{
+    background-color: rgb(7, 160, 96);
+}
+
+.marquee{
+    position:fixed;
+}
+</style>
+                    
+<marquee class="marquee" behavior="" direction=""> LDT Training Institute offers skill training courses in just one week. Limited seats available!<strong> "Book Quickly"</strong> </marquee>
+               
+    <h2 class=" text-center p-5 mt-5">Book your Seat </h2>
+
+    <div class="booking">
+         <form id="bookingForm">
+            <div class="mb-3">
+             <input type="text" id="name" placeholder="Your Name" required >
+            </div>
+            <div class="mb-3">
+             <input type="email" id="email" placeholder="Your Email" required>
+            </div>
+             <div class="mb-3">
+             <input type="text" id="phone" placeholder="Your Phone" required>
+            </div>
+             <div class="mb-3">
+             <input type="text" id="seatNumber" placeholder="Seat Number" readonly required>
+            </div>
+             <div class="mb-3">
+             <button type="submit" class="seatbtn ms-4">Book Seat</button>
+            </div>
+         </form>
+ 
+         <div class="seats" id="seatContainer"></div>
+
+ </div>
+ <div style="display: flex; justify-content:space-evenly">
+ <a  id="download" onclick="downloadBookings()" class= "dbtn" > ⬇️ Download Bookings</a>
+ <a  id="download" onclick="clearBookings()"  class= "clear"> 🗑️ Clear All Bookings </a>
+</div>
+
+    
+
+  <style>
+   #download{
+    cursor: pointer;
+
+   }
+   #download:hover, .clear:hover{
+    color:white;
+   }
+   .dbtn{
+    background-color: rgb(87, 150, 87); 
+    color:white;
+    padding: 10px;
+   }
+   .clear{
+    background-color: rgb(197, 46, 41);
+    padding: 10px;
+    color:white;
+
+
+
+   }
+
+  </style>
+ 
+  <div id="Table" style="display:none">
+
+   <h3>Booking List</h3>
+   <table id="bookingTable">
+     <thead>
+       <tr>
+         <th>Seat Number</th>
+         <th>Name</th>
+         <th>Email</th>
+         <th>Phone</th>
+       </tr>
+     </thead>
+     <tbody></tbody>
+   </table>
+ </div>
+   
+   <!-- booking seat start-->
+
+   <script>
+    const totalSeats = 20;
+    const seatContainer = document.getElementById('seatContainer');
+    const seatInput = document.getElementById('seatNumber');
+    const bookingTable = document.querySelector('#bookingTable tbody');
+  
+    // Load bookings from Local Storage
+    let bookings = JSON.parse(localStorage.getItem('bookings')) || [];
+  
+    // Create seat elements
+    for (let i = 1; i <= totalSeats; i++) {
+      const seat = document.createElement('div');
+      seat.classList.add('seat');
+      seat.textContent = i;
+      seat.dataset.number = i;
+  
+      // Mark booked seats
+      if (bookings.some(b => b.seat == i)) {
+        seat.classList.add('booked');
+      }
+  
+      seat.addEventListener('click', () => {
+        if (!seat.classList.contains('booked')) {
+          document.querySelectorAll('.seat').forEach(s => s.classList.remove('selected'));
+          seat.classList.add('selected');
+          seatInput.value = seat.dataset.number;
+        }
+      });
+  
+      seatContainer.appendChild(seat);
+    }
+  
+    // Show existing bookings
+    function renderBookings() {
+      bookingTable.innerHTML = '';
+      bookings.forEach(({ seat, name, email, phone }) => {
+        const row = bookingTable.insertRow();
+        row.innerHTML = `<td>${seat}</td><td>${name}</td><td>${email}</td><td>${phone}</td>`;
+      });
+    }
+  
+    renderBookings();
+  
+    // Handle form submit
+    document.getElementById('bookingForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+  
+      const name = document.getElementById('name').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const seatNum = seatInput.value;
+  
+      if (seatNum) {
+        // Save to array and localStorage
+        bookings.push({ seat: seatNum, name, email, phone });
+        localStorage.setItem('bookings', JSON.stringify(bookings));
+  
+        // Update seat style
+        const selectedSeat = document.querySelector(`.seat[data-number='${seatNum}']`);
+        selectedSeat.classList.remove('selected');
+        selectedSeat.classList.add('booked');
+  
+        renderBookings();
+  
+        alert(`✅ Seat ${seatNum} booked successfully!`);
+        this.reset();
+      }
+    });
+  
+  
+  
+    // Download bookings as CSV
+  function downloadBookings() {
+    if (bookings.length === 0) {
+      alert("No bookings to download.");
+      return;
+    }
+  
+    let csv = "Seat,Name,Email,Phone\n";
+    bookings.forEach(({ seat, name, email, phone }) => {
+      csv += `${seat},${name},${email},${phone}\n`;
+    });
+  
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "bookings.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+  
+  // Clear bookings
+  function clearBookings() {
+    if (confirm("Are you sure you want to clear all bookings?")) {
+      bookings = [];
+      localStorage.removeItem("bookings");
+      document.querySelectorAll('.seat').forEach(seat => seat.classList.remove('booked', 'selected'));
+      renderBookings();
+      alert("✅ All bookings have been cleared.");
+    }
+  }
+   </script>
+ 
+  <!-- booking seat end-->
+ 
+
+  <p class="mt-5" style="color:black; font-size:17px; margin-left:20px">If you missed this opportunity,
+    don’t worry! We are starting a new batch next month. If you’re interested, please fill out the form and start yor career. <a href="./index.html#merge">Click to Apply next batch  </a></p>
+
+ 
+     <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light mt-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="row gx-5">
+                <!-- <div class="col-lg-4 col-md-6 footer-about">
+                   
+                    </div> -->
+                </div>
+                <div class="col-lg-8 col-md-6">
+                    <div class="row gx-5">
+                        <div class="col-lg-4 col-md-12 pt-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Get In Touch</h3>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-geo-alt text-primary me-2"></i>
+                                <p class="mb-0">123 Street, Padappai</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-envelope-open text-primary me-2"></i>
+                                <p class="mb-0">info@example.com</p>
+                            </div>
+                            <div class="d-flex mb-2">
+                                <i class="bi bi-telephone text-primary me-2"></i>
+                                <p class="mb-0">+012 345 67890</p>
+                            </div>
+                            <div class="d-flex mt-4">
+                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-twitter fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-facebook-f fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square me-2" href="#"><i class="fab fa-linkedin-in fw-normal"></i></a>
+                                <a class="btn btn-primary btn-square" href="#"><i class="fab fa-instagram fw-normal"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Popular Links</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" href="./index.html"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
+                                <a class="text-light mb-2" href="./about.html"><i class="bi bi-arrow-right text-primary me-2"></i>About</a>
+                                <a class="text-light mb-2" href="./Training.html"><i class="bi bi-arrow-right text-primary me-2"></i>Teaning Module</a>
+                                <a class="text-light mb-2" href="./booking.html"><i class="bi bi-arrow-right text-primary me-2"></i>Booking</a>
+                                <a class="text-light mb-2" href="./lmslogin.html"><i class="bi bi-arrow-right text-primary me-2"></i>LMS</a>
+                                <a class="text-light" href="./contact.html"><i class="bi bi-arrow-right text-primary me-2"></i>Contact</a>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-12 pt-0 pt-lg-5 mb-5">
+                            <div class="section-title section-title-sm position-relative pb-3 mb-4">
+                                <h3 class="text-light mb-0">Quick Links</h3>
+                            </div>
+                            <div class="link-animated d-flex flex-column justify-content-start">
+                                <a class="text-light mb-2" href="./about.html">About</a>
+                                <a class="text-light mb-2" href="./about.html"><i class="bi bi-arrow-right text-primary me-2"></i>Experience</a>
+                                <a class="text-light mb-2" href="./about.html#team"><i class="bi bi-arrow-right text-primary me-2"></i>Our Teams</a>
+                                <a class="text-light mb-2" href="#">Teaning Module</a>
+                                <a class="text-light mb-2" href="./Training.html"><i class="bi bi-arrow-right text-primary me-2"></i>Entity</a>
+                                <a class="text-light" href="./Training.html#welding"><i class="bi bi-arrow-right text-primary me-2"></i>Welding</a>
+                                <a class="text-light" href="./Training.html#Services"><i class="bi bi-arrow-right text-primary me-2"></i>Services</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/counterup/counterup.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
